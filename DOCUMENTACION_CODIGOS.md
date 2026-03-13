@@ -1,0 +1,675 @@
+# Documentación línea por línea de los scripts
+
+Este archivo explica, línea por línea, cada archivo `.py` del repositorio.
+
+## EJERCICIOF.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `def solve(source, target):` → Se define la función `solve`.
+- **L4**: `    results = [] ` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `   def backtrack(src_idx, tgt_idx, stack, sequence):` → Se define la función `backtrack`.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `        if tgt_idx == len(target):` → Se evalúa una condición para decidir el flujo del programa.
+- **L8**: `            if src_idx == len(source) and len(stack) == 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L9**: `                results.append(sequence[:])  # Guardamos copia de la secuencia` → Se ejecuta la instrucción `results.append(sequence[:])  # Guardamos copia de la secuencia`.
+- **L10**: `            return` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L11**: `` → Línea en blanco para separar bloques lógicos.
+- **L12**: `        if src_idx < len(source):` → Se evalúa una condición para decidir el flujo del programa.
+- **L13**: `            sequence.append('i')` → Se ejecuta la instrucción `sequence.append('i')`.
+- **L14**: `            stack.append(source[src_idx])` → Se ejecuta la instrucción `stack.append(source[src_idx])`.
+- **L15**: `            backtrack(src_idx + 1, tgt_idx, stack, sequence)` → Se ejecuta la instrucción `backtrack(src_idx + 1, tgt_idx, stack, sequence)`.
+- **L16**: `            sequence.pop()` → Se ejecuta la instrucción `sequence.pop()`.
+- **L17**: `            stack.pop()` → Se ejecuta la instrucción `stack.pop()`.
+- **L18**: `` → Línea en blanco para separar bloques lógicos.
+- **L19**: `        if stack:` → Se evalúa una condición para decidir el flujo del programa.
+- **L20**: `            top = stack[-1]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L21**: `            if top == target[tgt_idx]:` → Se evalúa una condición para decidir el flujo del programa.
+- **L22**: `                sequence.append('o')` → Se ejecuta la instrucción `sequence.append('o')`.
+- **L23**: `                stack.pop()` → Se ejecuta la instrucción `stack.pop()`.
+- **L24**: `                backtrack(src_idx, tgt_idx + 1, stack, sequence)` → Se ejecuta la instrucción `backtrack(src_idx, tgt_idx + 1, stack, sequence)`.
+- **L25**: `                sequence.append... ` → Se ejecuta la instrucción `sequence.append...`.
+- **L26**: `                stack.append(top)` → Se ejecuta la instrucción `stack.append(top)`.
+- **L27**: `                sequence.pop()` → Se ejecuta la instrucción `sequence.pop()`.
+- **L28**: `` → Línea en blanco para separar bloques lógicos.
+- **L29**: `    backtrack(0, 0, [], [])` → Se ejecuta la instrucción `backtrack(0, 0, [], [])`.
+- **L30**: `    return results` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L31**: `` → Línea en blanco para separar bloques lógicos.
+- **L32**: `lines = sys.stdin.read().splitlines()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L33**: `i = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L34**: `while i < len(lines) - 1:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L35**: `    source = lines[i].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L36**: `    target = lines[i+1].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L37**: `    i += 2` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L38**: `` → Línea en blanco para separar bloques lógicos.
+- **L39**: `    print('[')` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L40**: `` → Línea en blanco para separar bloques lógicos.
+- **L41**: `    if len(source) == len(target):` → Se evalúa una condición para decidir el flujo del programa.
+- **L42**: `        seqs = solve(source, target)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L43**: `        for seq in seqs:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L44**: `            print(' '.join(seq))` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L45**: `` → Línea en blanco para separar bloques lógicos.
+- **L46**: `    print(']')` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## EJERCICIOH (1).py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `def solve(source, target):` → Se define la función `solve`.
+- **L4**: `    results = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `` → Línea en blanco para separar bloques lógicos.
+- **L6**: `    def backtrack(src_idx, tgt_idx, stack, sequence):` → Se define la función `backtrack`.
+- **L7**: `        if tgt_idx == len(target) and src_idx == len(source) and len(stack) == 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L8**: `            results.append(sequence[:])` → Se ejecuta la instrucción `results.append(sequence[:])`.
+- **L9**: `            return` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `        if tgt_idx > len(target) or src_idx > len(source):` → Se evalúa una condición para decidir el flujo del programa.
+- **L12**: `            return` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L13**: `        if src_idx < len(source):` → Se evalúa una condición para decidir el flujo del programa.
+- **L14**: `            stack.append(source[src_idx])` → Se ejecuta la instrucción `stack.append(source[src_idx])`.
+- **L15**: `            sequence.append('i')` → Se ejecuta la instrucción `sequence.append('i')`.
+- **L16**: `            backtrack(src_idx + 1, tgt_idx, stack, sequence)` → Se ejecuta la instrucción `backtrack(src_idx + 1, tgt_idx, stack, sequence)`.
+- **L17**: `            sequence.pop()` → Se ejecuta la instrucción `sequence.pop()`.
+- **L18**: `            stack.pop()` → Se ejecuta la instrucción `stack.pop()`.
+- **L19**: `` → Línea en blanco para separar bloques lógicos.
+- **L20**: `        if stack and tgt_idx < len(target) and stack[-1] == target[tgt_idx]:` → Se evalúa una condición para decidir el flujo del programa.
+- **L21**: `            top = stack.pop()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L22**: `            sequence.append('o')` → Se ejecuta la instrucción `sequence.append('o')`.
+- **L23**: `            backtrack(src_idx, tgt_idx + 1, stack, sequence)` → Se ejecuta la instrucción `backtrack(src_idx, tgt_idx + 1, stack, sequence)`.
+- **L24**: `            sequence.pop()` → Se ejecuta la instrucción `sequence.pop()`.
+- **L25**: `            stack.append(top)  ` → Se ejecuta la instrucción `stack.append(top)`.
+- **L26**: `` → Línea en blanco para separar bloques lógicos.
+- **L27**: `    backtrack(0, 0, [], [])` → Se ejecuta la instrucción `backtrack(0, 0, [], [])`.
+- **L28**: `    return results` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L29**: `` → Línea en blanco para separar bloques lógicos.
+- **L30**: `lines = sys.stdin.read().splitlines()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L31**: `i = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L32**: `while i < len(lines) - 1:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L33**: `    source = lines[i].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L34**: `    target = lines[i + 1].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L35**: `    i += 2` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L36**: `` → Línea en blanco para separar bloques lógicos.
+- **L37**: `    print('[')` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L38**: `    if len(source) == len(target):` → Se evalúa una condición para decidir el flujo del programa.
+- **L39**: `        for seq in solve(source, target):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L40**: `            print(' '.join(seq))` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L41**: `    print(']')` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicio1.py
+
+- **L1**: `def resolver_problema():` → Se define la función `resolver_problema`.
+- **L2**: `    n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L3**: `    eventos = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L4**: `` → Línea en blanco para separar bloques lógicos.
+- **L5**: `    policias_disponibles = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `    crimenes_sin_resolver = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L7**: `` → Línea en blanco para separar bloques lógicos.
+- **L8**: `    for evento in eventos:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L9**: `        if evento > 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L10**: `            policias_disponibles += evento` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L11**: `        else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L12**: `            if policias_disponibles > 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L13**: `                policias_disponibles -= 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L14**: `            else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L15**: `                crimenes_sin_resolver += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `    print(crimenes_sin_resolver)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L18**: `` → Línea en blanco para separar bloques lógicos.
+- **L19**: `if __name__ == "__main__":` → Punto de entrada: ejecuta el archivo solo cuando se corre directamente.
+- **L20**: `    resolver_problema()` → Se ejecuta la instrucción `resolver_problema()`.
+
+## ejercicio2.py
+
+- **L1**: `def resolver_problema_b():` → Se define la función `resolver_problema_b`.
+- **L2**: `    linea1 = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L3**: `    n = linea1[0]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L4**: `    m = linea1[1]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `precios = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `    precios.sort()` → Se ejecuta la instrucción `precios.sort()`.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    ganancias = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `    for i in range(m):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L12**: `        if precios[i] < 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L13**: `           ganancias -= precios[i]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L14**: `        else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L15**: `            break` → Se ejecuta la instrucción `break`.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `    print(ganancias)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L18**: `` → Línea en blanco para separar bloques lógicos.
+- **L19**: `if __name__ == "__main__":` → Punto de entrada: ejecuta el archivo solo cuando se corre directamente.
+- **L20**: `    resolver_problema_b()` → Se ejecuta la instrucción `resolver_problema_b()`.
+
+## ejercicio5.py
+
+- **L1**: `n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `equipos = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L4**: `for i in range(n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L5**: `    home, guest = map(int, input().split())` → Se lee información desde la entrada estándar.
+- **L6**: `    equipos.append((home, guest))` → Se ejecuta la instrucción `equipos.append((home, guest))`.
+- **L7**: `` → Línea en blanco para separar bloques lógicos.
+- **L8**: `conflictos = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L9**: `` → Línea en blanco para separar bloques lógicos.
+- **L10**: `for i in range(n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L11**: `    home_local = equipos[i][0]  ` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L12**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L13**: `    for j in range(n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L14**: `        if i != j: ` → Se evalúa una condición para decidir el flujo del programa.
+- **L15**: `            guest_visitante = equipos[j][1]  ` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `            if home_local == guest_visitante:` → Se evalúa una condición para decidir el flujo del programa.
+- **L18**: `                conflictos += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L19**: `` → Línea en blanco para separar bloques lógicos.
+- **L20**: `print(conflictos)` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioB.py
+
+- **L1**: `n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `skills = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L4**: `` → Línea en blanco para separar bloques lógicos.
+- **L5**: `skills.sort()` → Se ejecuta la instrucción `skills.sort()`.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `total = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `for i in range(0, n, 2):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L10**: `    total += skills[i+1] - skills[i]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L11**: `` → Línea en blanco para separar bloques lógicos.
+- **L12**: `print(total)` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioBsem5.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `def tokenize(s):` → Se define la función `tokenize`.
+- **L4**: `    """Convierte el string en una lista de tokens: '(', ')' o números."""` → Se ejecuta la instrucción `"""Convierte el string en una lista de tokens: '(', ')' o números."""`.
+- **L5**: `    tokens = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `    i = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L7**: `    while i < len(s):` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L8**: `        if s[i] in '()':` → Se evalúa una condición para decidir el flujo del programa.
+- **L9**: `            tokens.append(s[i])` → Se ejecuta la instrucción `tokens.append(s[i])`.
+- **L10**: `            i += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L11**: `        elif s[i].isdigit() or (s[i] == '-' and i + 1 < len(s) and s[i+1].isdigit()):` → Se evalúa una condición alternativa dentro de la misma cadena lógica.
+- **L12**: `            j = i + 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L13**: `            while j < len(s) and s[j].isdigit():` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L14**: `                j += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L15**: `            tokens.append(int(s[i:j]))` → Se ejecuta la instrucción `tokens.append(int(s[i:j]))`.
+- **L16**: `            i = j` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L17**: `        else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L18**: `            i += 1  # saltar espacios y saltos de línea` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L19**: `    return tokens` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L20**: `` → Línea en blanco para separar bloques lógicos.
+- **L21**: `def parse(tokens, idx):` → Se define la función `parse`.
+- **L22**: `    """` → Se ejecuta la instrucción `"""`.
+- **L23**: `    Parsea recursivamente el árbol desde tokens[idx].` → Se ejecuta la instrucción `Parsea recursivamente el árbol desde tokens[idx].`.
+- **L24**: `    Retorna (nodo, nuevo_idx).` → Se ejecuta la instrucción `Retorna (nodo, nuevo_idx).`.
+- **L25**: `    Nodo puede ser None (árbol vacío) o (valor, izq, der).` → Se ejecuta la instrucción `Nodo puede ser None (árbol vacío) o (valor, izq, der).`.
+- **L26**: `    """` → Se ejecuta la instrucción `"""`.
+- **L27**: `    # Debe empezar con '('` → Comentario que documenta la intención del bloque siguiente.
+- **L28**: `    idx += 1  # consumir '('` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L29**: `` → Línea en blanco para separar bloques lógicos.
+- **L30**: `    if tokens[idx] == ')':` → Se evalúa una condición para decidir el flujo del programa.
+- **L31**: `        # Árbol vacío: ()` → Comentario que documenta la intención del bloque siguiente.
+- **L32**: `        return None, idx + 1` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L33**: `` → Línea en blanco para separar bloques lógicos.
+- **L34**: `    # Árbol con valor: (entero árbol_izq árbol_der)` → Comentario que documenta la intención del bloque siguiente.
+- **L35**: `    value = tokens[idx]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L36**: `    idx += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L37**: `` → Línea en blanco para separar bloques lógicos.
+- **L38**: `    left, idx = parse(tokens, idx)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L39**: `    right, idx = parse(tokens, idx)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L40**: `` → Línea en blanco para separar bloques lógicos.
+- **L41**: `    idx += 1  # consumir ')'` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L42**: `    return (value, left, right), idx` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L43**: `` → Línea en blanco para separar bloques lógicos.
+- **L44**: `def has_path_sum(node, target, current_sum):` → Se define la función `has_path_sum`.
+- **L45**: `    """` → Se ejecuta la instrucción `"""`.
+- **L46**: `    Verifica si existe un camino raíz-hoja cuya suma sea igual a target.` → Se ejecuta la instrucción `Verifica si existe un camino raíz-hoja cuya suma sea igual a target.`.
+- **L47**: `    """` → Se ejecuta la instrucción `"""`.
+- **L48**: `    if node is None:` → Se evalúa una condición para decidir el flujo del programa.
+- **L49**: `        return False` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L50**: `` → Línea en blanco para separar bloques lógicos.
+- **L51**: `    value, left, right = node` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L52**: `    current_sum += value` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L53**: `` → Línea en blanco para separar bloques lógicos.
+- **L54**: `    # Es hoja si ambos hijos son None` → Comentario que documenta la intención del bloque siguiente.
+- **L55**: `    if left is None and right is None:` → Se evalúa una condición para decidir el flujo del programa.
+- **L56**: `        return current_sum == target` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L57**: `` → Línea en blanco para separar bloques lógicos.
+- **L58**: `    return has_path_sum(left, target, current_sum) or \` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L59**: `           has_path_sum(right, target, current_sum)` → Se ejecuta la instrucción `has_path_sum(right, target, current_sum)`.
+- **L60**: `` → Línea en blanco para separar bloques lógicos.
+- **L61**: `def main():` → Se define la función `main`.
+- **L62**: `    data = sys.stdin.read()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L63**: `    tokens = tokenize(data)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L64**: `` → Línea en blanco para separar bloques lógicos.
+- **L65**: `    idx = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L66**: `    while idx < len(tokens):` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L67**: `        # Leer el entero objetivo` → Comentario que documenta la intención del bloque siguiente.
+- **L68**: `        target = tokens[idx]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L69**: `        idx += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L70**: `` → Línea en blanco para separar bloques lógicos.
+- **L71**: `        # Parsear el árbol` → Comentario que documenta la intención del bloque siguiente.
+- **L72**: `        tree, idx = parse(tokens, idx)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L73**: `` → Línea en blanco para separar bloques lógicos.
+- **L74**: `        # Verificar si existe el camino` → Comentario que documenta la intención del bloque siguiente.
+- **L75**: `        if has_path_sum(tree, target, 0):` → Se evalúa una condición para decidir el flujo del programa.
+- **L76**: `            print("yes")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L77**: `        else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L78**: `            print("no")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L79**: `` → Línea en blanco para separar bloques lógicos.
+- **L80**: `main()` → Se ejecuta la instrucción `main()`.
+
+## ejercicioCsem3.py
+
+- **L1**: `num=int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `lista=list(map(int,input().split()))` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L3**: `save=[]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L4**: `for i in lista:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L5**: `    save.append(lista.count(i))` → Se ejecuta la instrucción `save.append(lista.count(i))`.
+- **L6**: `print (max(save))` → Se ejecuta la instrucción `print (max(save))`.
+
+## ejercicioCsem4.py
+
+- **L1**: `t = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `for _ in range(t):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L3**: `    a, b, c, n = map(int, input().split())` → Se lee información desde la entrada estándar.
+- **L4**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L5**: `    total = a + b + c + n` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L7**: `    if total % 3 != 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L8**: `        print("NO")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L9**: `        continue` → Se ejecuta la instrucción `continue`.
+- **L10**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L11**: `    T = total // 3` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L12**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L13**: `    if T >= a and T >= b and T >= c:` → Se evalúa una condición para decidir el flujo del programa.
+- **L14**: `        print("YES")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L15**: `    else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L16**: `        print("NO")` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioCsem5.py
+
+- **L1**: `# Leer tamaño de la permutación` → Comentario que documenta la intención del bloque siguiente.
+- **L2**: `n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L3**: `` → Línea en blanco para separar bloques lógicos.
+- **L4**: `# Leer permutación` → Comentario que documenta la intención del bloque siguiente.
+- **L5**: `p = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `# Leer matriz de adyacencia` → Comentario que documenta la intención del bloque siguiente.
+- **L8**: `A = [input().strip() for _ in range(n)]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L9**: `` → Línea en blanco para separar bloques lógicos.
+- **L10**: `# Lista de visitados para DFS` → Comentario que documenta la intención del bloque siguiente.
+- **L11**: `visited = [False] * n` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L12**: `` → Línea en blanco para separar bloques lógicos.
+- **L13**: `` → Línea en blanco para separar bloques lógicos.
+- **L14**: `# DFS para encontrar componentes conectados` → Comentario que documenta la intención del bloque siguiente.
+- **L15**: `def dfs(i, comp):` → Se define la función `dfs`.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `    visited[i] = True      # marcamos nodo visitado` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L18**: `    comp.append(i)         # añadimos nodo al componente` → Se ejecuta la instrucción `comp.append(i)         # añadimos nodo al componente`.
+- **L19**: `` → Línea en blanco para separar bloques lógicos.
+- **L20**: `    # revisamos conexiones` → Comentario que documenta la intención del bloque siguiente.
+- **L21**: `    for j in range(n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L22**: `` → Línea en blanco para separar bloques lógicos.
+- **L23**: `        # si hay conexión y no fue visitado` → Comentario que documenta la intención del bloque siguiente.
+- **L24**: `        if A[i][j] == '1' and not visited[j]:` → Se evalúa una condición para decidir el flujo del programa.
+- **L25**: `` → Línea en blanco para separar bloques lógicos.
+- **L26**: `            dfs(j, comp)` → Se ejecuta la instrucción `dfs(j, comp)`.
+- **L27**: `` → Línea en blanco para separar bloques lógicos.
+- **L28**: `` → Línea en blanco para separar bloques lógicos.
+- **L29**: `# recorrer todos los nodos` → Comentario que documenta la intención del bloque siguiente.
+- **L30**: `for i in range(n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L31**: `` → Línea en blanco para separar bloques lógicos.
+- **L32**: `    if not visited[i]:` → Se evalúa una condición para decidir el flujo del programa.
+- **L33**: `` → Línea en blanco para separar bloques lógicos.
+- **L34**: `        comp = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L35**: `` → Línea en blanco para separar bloques lógicos.
+- **L36**: `        # encontrar componente conectado` → Comentario que documenta la intención del bloque siguiente.
+- **L37**: `        dfs(i, comp)` → Se ejecuta la instrucción `dfs(i, comp)`.
+- **L38**: `` → Línea en blanco para separar bloques lógicos.
+- **L39**: `        # valores de la permutación en ese componente` → Comentario que documenta la intención del bloque siguiente.
+- **L40**: `        values = [p[x] for x in comp]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L41**: `` → Línea en blanco para separar bloques lógicos.
+- **L42**: `        # ordenar posiciones y valores` → Comentario que documenta la intención del bloque siguiente.
+- **L43**: `        comp.sort()` → Se ejecuta la instrucción `comp.sort()`.
+- **L44**: `        values.sort()` → Se ejecuta la instrucción `values.sort()`.
+- **L45**: `` → Línea en blanco para separar bloques lógicos.
+- **L46**: `        # colocar los valores ordenados en las posiciones` → Comentario que documenta la intención del bloque siguiente.
+- **L47**: `        for k in range(len(comp)):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L48**: `            p[comp[k]] = values[k]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L49**: `` → Línea en blanco para separar bloques lógicos.
+- **L50**: `` → Línea en blanco para separar bloques lógicos.
+- **L51**: `# imprimir resultado` → Comentario que documenta la intención del bloque siguiente.
+- **L52**: `print(*p)` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioDsem4.py
+
+- **L1**: `guest = input().strip()` → Se lee información desde la entrada estándar.
+- **L2**: `host = input().strip()` → Se lee información desde la entrada estándar.
+- **L3**: `pile = input().strip()` → Se lee información desde la entrada estándar.
+- **L4**: `` → Línea en blanco para separar bloques lógicos.
+- **L5**: `if sorted(guest + host) == sorted(pile):` → Se evalúa una condición para decidir el flujo del programa.
+- **L6**: `    print("YES")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L7**: `else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L8**: `    print("NO")` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioDsem5.py
+
+- **L1**: `n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `a = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L3**: `` → Línea en blanco para separar bloques lógicos.
+- **L4**: `stairs = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `for i in range(1, n):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L6**: `    if a[i] == 1:` → Se evalúa una condición para decidir el flujo del programa.
+- **L7**: `        stairs.append(a[i-1])  # la escalera anterior terminó aquí` → Se ejecuta la instrucción `stairs.append(a[i-1])  # la escalera anterior terminó aquí`.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `stairs.append(a[-1])  # última escalera` → Se ejecuta la instrucción `stairs.append(a[-1])  # última escalera`.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `print(len(stairs))` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L12**: `print(*stairs)` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioE.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `` → Línea en blanco para separar bloques lógicos.
+- **L3**: `input_data = sys.stdin.read().split('\n')` → Se lee información desde la entrada estándar.
+- **L4**: `line_idx = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `output = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `while line_idx < len(input_data):` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L8**: `    line = input_data[line_idx].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L9**: `    line_idx += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `    if not line or line == '0':` → Se evalúa una condición para decidir el flujo del programa.
+- **L12**: `        break` → Se ejecuta la instrucción `break`.
+- **L13**: `` → Línea en blanco para separar bloques lógicos.
+- **L14**: `    n = int(line)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L15**: `    block_results = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `    while line_idx < len(input_data):` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L18**: `        line = input_data[line_idx].strip()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L19**: `        line_idx += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L20**: `` → Línea en blanco para separar bloques lógicos.
+- **L21**: `        if not line or line == '0':` → Se evalúa una condición para decidir el flujo del programa.
+- **L22**: `            break` → Se ejecuta la instrucción `break`.
+- **L23**: `` → Línea en blanco para separar bloques lógicos.
+- **L24**: `        target = list(map(int, line.split()))` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L25**: `` → Línea en blanco para separar bloques lógicos.
+- **L26**: `        stack = []          # La estación (pila)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L27**: `        next_train = 1      # Próximo vagón que llega desde A` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L28**: `        possible = True` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L29**: `` → Línea en blanco para separar bloques lógicos.
+- **L30**: `        for wagon in target:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L31**: `            while (not stack or stack[-1] != wagon) and next_train <= n:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L32**: `                stack.append(next_train)` → Se ejecuta la instrucción `stack.append(next_train)`.
+- **L33**: `                next_train += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L34**: `` → Línea en blanco para separar bloques lógicos.
+- **L35**: `            if stack and stack[-1] == wagon:` → Se evalúa una condición para decidir el flujo del programa.
+- **L36**: `                stack.pop()` → Se ejecuta la instrucción `stack.pop()`.
+- **L37**: `            else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L38**: `                possible = False` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L39**: `                break` → Se ejecuta la instrucción `break`.
+- **L40**: `` → Línea en blanco para separar bloques lógicos.
+- **L41**: `        block_results.append("Yes" if possible else "No")` → Se ejecuta la instrucción `block_results.append("Yes" if possible else "No")`.
+- **L42**: `` → Línea en blanco para separar bloques lógicos.
+- **L43**: `    output.append('\n'.join(block_results))` → Se ejecuta la instrucción `output.append('\n'.join(block_results))`.
+- **L44**: `` → Línea en blanco para separar bloques lógicos.
+- **L45**: `print('\n\n'.join(output))` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioEsem4.py
+
+- **L1**: `from collections import deque` → Se importan módulos necesarios: `from collections import deque`.
+- **L2**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L3**: `input = sys.stdin.readline` → Se lee información desde la entrada estándar.
+- **L4**: `` → Línea en blanco para separar bloques lógicos.
+- **L5**: `def solve():` → Se define la función `solve`.
+- **L6**: `    c = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L7**: `    for case in range(c):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L8**: `        n, t, m = map(int, input().split())` → Se lee información desde la entrada estándar.
+- **L9**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L10**: `        # Guardar carros con su índice original` → Comentario que documenta la intención del bloque siguiente.
+- **L11**: `        cars = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L12**: `        left = deque()   # (arrival_time, original_index)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L13**: `        right = deque()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L14**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L15**: `        for i in range(m):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L16**: `            parts = input().split()` → Se lee información desde la entrada estándar.
+- **L17**: `            arrival, bank = int(parts[0]), parts[1]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L18**: `            cars.append((arrival, bank))` → Se ejecuta la instrucción `cars.append((arrival, bank))`.
+- **L19**: `            if bank == 'left':` → Se evalúa una condición para decidir el flujo del programa.
+- **L20**: `                left.append((arrival, i))` → Se ejecuta la instrucción `left.append((arrival, i))`.
+- **L21**: `            else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L22**: `                right.append((arrival, i))` → Se ejecuta la instrucción `right.append((arrival, i))`.
+- **L23**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L24**: `        results = [0] * m` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L25**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L26**: `        ferry_time = 0   # hora en que el ferry está disponible en su orilla actual` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L27**: `        ferry_side = 'left'` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L28**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L29**: `        remaining = m` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L30**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L31**: `        while remaining > 0:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L32**: `            if ferry_side == 'left':` → Se evalúa una condición para decidir el flujo del programa.
+- **L33**: `                current_queue = left` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L34**: `                other_queue = right` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L35**: `            else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L36**: `                current_queue = right` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L37**: `                other_queue = left` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L38**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L39**: `            if not current_queue and not other_queue:` → Se evalúa una condición para decidir el flujo del programa.
+- **L40**: `                break` → Se ejecuta la instrucción `break`.
+- **L41**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L42**: `            if not current_queue:` → Se evalúa una condición para decidir el flujo del programa.
+- **L43**: `                # No hay nadie en este lado, cruzar vacío al otro lado` → Comentario que documenta la intención del bloque siguiente.
+- **L44**: `                ferry_time += t` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L45**: `                ferry_side = 'right' if ferry_side == 'left' else 'left'` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L46**: `                continue` → Se ejecuta la instrucción `continue`.
+- **L47**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L48**: `            # Hora de partida: el ferry espera a que llegue al menos 1 carro si no hay ninguno aún` → Comentario que documenta la intención del bloque siguiente.
+- **L49**: `            # (ya verificamos que current_queue no está vacía)` → Comentario que documenta la intención del bloque siguiente.
+- **L50**: `            depart = max(ferry_time, current_queue[0][0])` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L51**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L52**: `            # Cargar hasta n carros que hayan llegado antes o en depart` → Comentario que documenta la intención del bloque siguiente.
+- **L53**: `            loaded = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L54**: `            while current_queue and len(loaded) < n and current_queue[0][0] <= depart:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L55**: `                loaded.append(current_queue.popleft())` → Se ejecuta la instrucción `loaded.append(current_queue.popleft())`.
+- **L56**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L57**: `            arrive = depart + t` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L58**: `            for (_, idx) in loaded:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L59**: `                results[idx] = arrive` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L60**: `            ` → Línea en blanco para separar bloques lógicos.
+- **L61**: `            remaining -= len(loaded)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L62**: `            ferry_time = arrive` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L63**: `            ferry_side = 'right' if ferry_side == 'left' else 'left'` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L64**: `        ` → Línea en blanco para separar bloques lógicos.
+- **L65**: `        if case > 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L66**: `            print()` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L67**: `        for r in results:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L68**: `            print(r)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L69**: `` → Línea en blanco para separar bloques lógicos.
+- **L70**: `solve()` → Se ejecuta la instrucción `solve()`.
+- **L71**: `` → Línea en blanco para separar bloques lógicos.
+
+## ejercicioF (1).py
+
+- **L1**: `s = input().strip()` → Se lee información desde la entrada estándar.
+- **L2**: `numeros = s.split('+')` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L3**: `numeros.sort()` → Se ejecuta la instrucción `numeros.sort()`.
+- **L4**: `print('+'.join(numeros))` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## ejercicioFsemana5.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `input = sys.stdin.readline` → Se lee información desde la entrada estándar.
+- **L3**: `` → Línea en blanco para separar bloques lógicos.
+- **L4**: `def post_order(preorder):` → Se define la función `post_order`.
+- **L5**: `    """` → Se ejecuta la instrucción `"""`.
+- **L6**: `    Dado el pre-order de un BST, imprime el post-order` → Se ejecuta la instrucción `Dado el pre-order de un BST, imprime el post-order`.
+- **L7**: `    sin construir explícitamente el árbol.` → Se ejecuta la instrucción `sin construir explícitamente el árbol.`.
+- **L8**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    Enfoque recursivo directo:` → Se ejecuta la instrucción `Enfoque recursivo directo:`.
+- **L10**: `    - preorder[0] es la raíz` → Se ejecuta la instrucción `- preorder[0] es la raíz`.
+- **L11**: `    - Los elementos < raíz forman el subárbol izquierdo` → Se ejecuta la instrucción `- Los elementos < raíz forman el subárbol izquierdo`.
+- **L12**: `    - Los elementos > raíz forman el subárbol derecho` → Se ejecuta la instrucción `- Los elementos > raíz forman el subárbol derecho`.
+- **L13**: `    - Post-order: izquierda, derecha, raíz` → Se ejecuta la instrucción `- Post-order: izquierda, derecha, raíz`.
+- **L14**: `    """` → Se ejecuta la instrucción `"""`.
+- **L15**: `    if not preorder:` → Se evalúa una condición para decidir el flujo del programa.
+- **L16**: `        return` → Se devuelve un valor y termina la ejecución de la función actual.
+- **L17**: `` → Línea en blanco para separar bloques lógicos.
+- **L18**: `    root = preorder[0]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L19**: `    rest = preorder[1:]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L20**: `` → Línea en blanco para separar bloques lógicos.
+- **L21**: `    # Encontrar el límite entre subárbol izquierdo y derecho` → Comentario que documenta la intención del bloque siguiente.
+- **L22**: `    split = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L23**: `    while split < len(rest) and rest[split] < root:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L24**: `        split += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L25**: `` → Línea en blanco para separar bloques lógicos.
+- **L26**: `    left  = rest[:split]   # todos menores que root` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L27**: `    right = rest[split:]   # todos mayores que root` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L28**: `` → Línea en blanco para separar bloques lógicos.
+- **L29**: `    # Post-order: izquierda -> derecha -> raíz` → Comentario que documenta la intención del bloque siguiente.
+- **L30**: `    post_order(left)` → Se ejecuta la instrucción `post_order(left)`.
+- **L31**: `    post_order(right)` → Se ejecuta la instrucción `post_order(right)`.
+- **L32**: `    print(root)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L33**: `` → Línea en blanco para separar bloques lógicos.
+- **L34**: `def main():` → Se define la función `main`.
+- **L35**: `    data = sys.stdin.read().split()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L36**: `    preorder = list(map(int, data))` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L37**: `    sys.setrecursionlimit(20000)` → Se ejecuta la instrucción `sys.setrecursionlimit(20000)`.
+- **L38**: `    post_order(preorder)` → Se ejecuta la instrucción `post_order(preorder)`.
+- **L39**: `` → Línea en blanco para separar bloques lógicos.
+- **L40**: `main()` → Se ejecuta la instrucción `main()`.
+
+## ejercicioN.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `input = sys.stdin.readline` → Se lee información desde la entrada estándar.
+- **L3**: `` → Línea en blanco para separar bloques lógicos.
+- **L4**: `def solve():` → Se define la función `solve`.
+- **L5**: `    n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `    a = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L7**: `    target = n // 3` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    # Contar cuántos elementos tienen cada resto` → Comentario que documenta la intención del bloque siguiente.
+- **L10**: `    c = [0, 0, 0]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L11**: `    for x in a:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L12**: `        c[x % 3] += 1` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L13**: `` → Línea en blanco para separar bloques lógicos.
+- **L14**: `    moves = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L15**: `` → Línea en blanco para separar bloques lógicos.
+- **L16**: `    # Pasar excesos en orden 0->1->2->0` → Comentario que documenta la intención del bloque siguiente.
+- **L17**: `    # Hacemos 2 vueltas para manejar el ciclo (ej: exceso en 2 que va a 0)` → Comentario que documenta la intención del bloque siguiente.
+- **L18**: `    for _ in range(2):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L19**: `        for r in range(3):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L20**: `            nxt = (r + 1) % 3` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L21**: `            if c[r] > target:` → Se evalúa una condición para decidir el flujo del programa.
+- **L22**: `                excess = c[r] - target` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L23**: `                moves += excess          # cada elemento necesita 1 incremento` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L24**: `                c[r] -= excess` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L25**: `                c[nxt] += excess` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L26**: `` → Línea en blanco para separar bloques lógicos.
+- **L27**: `    print(moves)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L28**: `` → Línea en blanco para separar bloques lógicos.
+- **L29**: `t = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L30**: `for _ in range(t):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L31**: `    solve()` → Se ejecuta la instrucción `solve()`.
+
+## ejercicioO.py
+
+- **L1**: `import sys` → Se importan módulos necesarios: `import sys`.
+- **L2**: `from sys import setrecursionlimit` → Se importan módulos necesarios: `from sys import setrecursionlimit`.
+- **L3**: `input = sys.stdin.readline` → Se lee información desde la entrada estándar.
+- **L4**: `setrecursionlimit(200000)` → Se ejecuta la instrucción `setrecursionlimit(200000)`.
+- **L5**: `` → Línea en blanco para separar bloques lógicos.
+- **L6**: `def solve():` → Se define la función `solve`.
+- **L7**: `    n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L8**: `    adj = [[] for _ in range(n + 1)]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L9**: `    for _ in range(n - 1):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L10**: `        u, v = map(int, input().split())` → Se lee información desde la entrada estándar.
+- **L11**: `        adj[u].append(v)` → Se ejecuta la instrucción `adj[u].append(v)`.
+- **L12**: `        adj[v].append(u)` → Se ejecuta la instrucción `adj[v].append(u)`.
+- **L13**: `` → Línea en blanco para separar bloques lógicos.
+- **L14**: `    expected = 0.0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L15**: `` → Línea en blanco para separar bloques lógicos.
+- **L16**: `    # DFS iterativo para evitar recursión profunda con n=100000` → Comentario que documenta la intención del bloque siguiente.
+- **L17**: `    # stack: (nodo_actual, padre, probabilidad_de_llegar_aqui)` → Comentario que documenta la intención del bloque siguiente.
+- **L18**: `    stack = [(1, 0, 1.0)]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L19**: `` → Línea en blanco para separar bloques lógicos.
+- **L20**: `    while stack:` → Se inicia un bucle `while` que se repite mientras la condición sea verdadera.
+- **L21**: `        node, parent, prob = stack.pop()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L22**: `` → Línea en blanco para separar bloques lógicos.
+- **L23**: `        # Hijos = vecinos excluyendo el padre` → Comentario que documenta la intención del bloque siguiente.
+- **L24**: `        children = [v for v in adj[node] if v != parent]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L25**: `` → Línea en blanco para separar bloques lógicos.
+- **L26**: `        if not children:` → Se evalúa una condición para decidir el flujo del programa.
+- **L27**: `            # Nodo hoja: el recorrido termina aquí, no suma más` → Comentario que documenta la intención del bloque siguiente.
+- **L28**: `            continue` → Se ejecuta la instrucción `continue`.
+- **L29**: `` → Línea en blanco para separar bloques lógicos.
+- **L30**: `        k = len(children)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L31**: `        # Cada arista hacia un hijo contribuye con prob / k al valor esperado` → Comentario que documenta la intención del bloque siguiente.
+- **L32**: `        for child in children:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L33**: `            child_prob = prob / k` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L34**: `            expected += child_prob   # arista de longitud 1 tomada con prob child_prob` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L35**: `            stack.append((child, node, child_prob))` → Se ejecuta la instrucción `stack.append((child, node, child_prob))`.
+- **L36**: `` → Línea en blanco para separar bloques lógicos.
+- **L37**: `    print(f"{expected:.15f}")` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L38**: `` → Línea en blanco para separar bloques lógicos.
+- **L39**: `solve()` → Se ejecuta la instrucción `solve()`.
+
+## ejerciciobsem4.py
+
+- **L1**: `t = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L2**: `for _ in range(t):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L3**: `    n = int(input())` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L4**: `    a = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L5**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L6**: `    vistos = set()` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L7**: `    p = []` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L8**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    for x in a:` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L10**: `        if x not in vistos:` → Se evalúa una condición para decidir el flujo del programa.
+- **L11**: `            p.append(x)` → Se ejecuta la instrucción `p.append(x)`.
+- **L12**: `            vistos.add(x)` → Se ejecuta la instrucción `vistos.add(x)`.
+- **L13**: `    ` → Línea en blanco para separar bloques lógicos.
+- **L14**: `    print(*p)` → Se imprime el resultado o estado solicitado en la salida estándar.
+
+## main.py
+
+- **L1**: `def resolver_problema_b():` → Se define la función `resolver_problema_b`.
+- **L2**: `    linea1 = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L3**: `    n = linea1[0]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L4**: `    m = linea1[1]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `precios = list(map(int, input().split()))` → Se lee información desde la entrada estándar.
+- **L6**: `` → Línea en blanco para separar bloques lógicos.
+- **L7**: `    precios.sort()` → Se ejecuta la instrucción `precios.sort()`.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    ganancias = 0` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `    for i in range(m):` → Se inicia un bucle `for` para recorrer una secuencia o rango.
+- **L12**: `        if precios[i] < 0:` → Se evalúa una condición para decidir el flujo del programa.
+- **L13**: `           ganancias -= precios[i]` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L14**: `        else:` → Rama alternativa que se ejecuta cuando no se cumple la condición previa.
+- **L15**: `            break` → Se ejecuta la instrucción `break`.
+- **L16**: `` → Línea en blanco para separar bloques lógicos.
+- **L17**: `    print(ganancias)` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L18**: `` → Línea en blanco para separar bloques lógicos.
+- **L19**: `if __name__ == "__main__":` → Punto de entrada: ejecuta el archivo solo cuando se corre directamente.
+- **L20**: `    resolver_problema_b()` → Se ejecuta la instrucción `resolver_problema_b()`.
+
+## resolver_problema.py
+
+- **L1**: `def resolver_problema():` → Se define la función `resolver_problema`.
+- **L2**: `    d1, d2, d3 = map(int, input().split())` → Se lee información desde la entrada estándar.
+- **L3**: `` → Línea en blanco para separar bloques lógicos.
+- **L4**: `    ruta1 = d1 + d3 + d2` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L5**: `    ruta2 = 2 * (d1 + d2)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L6**: `    ruta3 = 2 * (d1 + d3)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L7**: `    ruta4 = 2 * (d2 + d3)` → Se realiza una asignación o actualización de variables/estructuras de datos.
+- **L8**: `` → Línea en blanco para separar bloques lógicos.
+- **L9**: `    print(min(ruta1, ruta2, ruta3, ruta4))` → Se imprime el resultado o estado solicitado en la salida estándar.
+- **L10**: `` → Línea en blanco para separar bloques lógicos.
+- **L11**: `` → Línea en blanco para separar bloques lógicos.
+- **L12**: `resolver_problema()` → Se ejecuta la instrucción `resolver_problema()`.

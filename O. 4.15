@@ -1,0 +1,27 @@
+import sys
+
+def solve_restoring_numbers():
+    # Leemos la entrada de forma segura
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    # Convertimos los 4 valores a enteros
+    numeros = [int(x) for x in input_data[:4]]
+    
+    # Ordenamos la lista de menor a mayor
+    numeros.sort()
+    
+    # Como la lista está ordenada, el último elemento (índice 3) es la suma total (a+b+c)
+    suma_total = numeros[3]
+    
+    # Calculamos los números originales restando las sumas parciales a la suma total
+    a = suma_total - numeros[0]
+    b = suma_total - numeros[1]
+    c = suma_total - numeros[2]
+    
+    # Imprimimos los tres números separados por un espacio
+    print(f"{a} {b} {c}")
+
+if __name__ == '__main__':
+    solve_restoring_numbers()

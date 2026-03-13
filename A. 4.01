@@ -1,0 +1,48 @@
+import sys
+from collections import deque
+
+def solve_beiju_text():
+    # Iterar directamente sobre sys.stdin maneja el EOF de forma automática
+    for line in sys.stdin:
+        # Limpiamos los saltos de línea sin borrar espacios en blanco válidos
+        line = line.replace('\n', '').replace('\r', '')
+        
+        d = deque()
+        curr_segment = []
+        at_front = False  # False = Modo normal (End), True = Modo insertar al inicio (Home)
+        
+        for char in line:
+            if char == '[':
+                # Si hay texto acumulado, lo guardamos donde indique at_front
+                if curr_segment:
+                    if at_front:
+                        d.appendleft("".join(curr_segment))
+                    else:
+                        d.append("".join(curr_segment))
+                    curr_segment = []
+                at_front = True
+                
+            elif char == ']':
+                if curr_segment:
+                    if at_front:
+                        d.appendleft("".join(curr_segment))
+                    else:
+                        d.append("".join(curr_segment))
+                    curr_segment = []
+                at_front = False
+                
+            else:
+                curr_segment.append(char)
+                
+        # Guardamos el último segmento que haya quedado pendiente al terminar la línea
+        if curr_segment:
+            if at_front:
+                d.appendleft("".join(curr_segment))
+            else:
+                d.append("".join(curr_segment))
+                
+        # Imprimimos el resultado de la línea actual
+        print("".join(d))
+
+if __name__ == '__main__':
+    solve_beiju_text()

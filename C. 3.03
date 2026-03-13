@@ -1,0 +1,16 @@
+from collections import Counter
+
+def main():
+    n = int(input().strip())
+    
+
+    coins = input().strip().split()
+    
+
+    coin_counts = Counter(coins)
+    
+
+    print(max(coin_counts.values()))
+
+if __name__ == "__main__":
+    main()

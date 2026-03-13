@@ -1,0 +1,98 @@
+import sys
+
+# Aumentar el límite de recursión es vital en Python para árboles de hasta 10^5 nodos
+sys.setrecursionlimit(300000)
+
+def solve_cookies():
+    # Lectura rápida y segura de todos los datos
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    n = int(input_data[0])
+    T = int(input_data[1])
+    
+    # x: cantidad de galletas, t: tiempo para comer una galleta
+    x = [0] * (n + 1)
+    t = [0] * (n + 1)
+    
+    idx = 2
+    for i in range(1, n + 1):
+        x[i] = int(input_data[idx])
+        idx += 1
+    for i in range(1, n + 1):
+        t[i] = int(input_data[idx])
+        idx += 1
+        
+    # Construcción del árbol
+    children = [[] for _ in range(n + 1)]
+    for i in range(2, n + 1):
+        p_i = int(input_data[idx])
+        l_i = int(input_data[idx+1])
+        children[p_i].append((i, l_i))
+        idx += 2
+        
+    # Compresión de coordenadas para los tiempos en el Fenwick Tree (BIT)
+    unique_times = sorted(list(set(t[1:])))
+    K = len(unique_times)
+    time_to_idx = {val: i + 1 for i, val in enumerate(unique_times)}
+    
+    bit_count = [0] * (K + 1)
+    bit_time = [0] * (K + 1)
+    MAX_POWER = K.bit_length()
+    
+    def add(i, count_val, time_val):
+        """Actualiza el Fenwick Tree añadiendo o quitando galletas"""
+        while i <= K:
+            bit_count[i] += count_val
+            bit_time[i] += time_val
+            i += i & (-i)
+            
+    def get_max_cookies(time_limit):
+        """Encuentra cuántas galletas caben en el tiempo libre usando Binary Lifting O(log N)"""
+        if time_limit <= 0: return 0
+        curr_idx = 0
+        cookies = 0
+        time_spent = 0
+        
+        for i in range(MAX_POWER, -1, -1):
+            next_idx = curr_idx + (1 << i)
+            if next_idx <= K and time_spent + bit_time[next_idx] <= time_limit:
+                curr_idx = next_idx
+                time_spent += bit_time[curr_idx]
+                cookies += bit_count[curr_idx]
+                
+        # Si nos sobra un poquito de tiempo, comemos una fracción de galletas del siguiente nivel
+        if curr_idx < K:
+            rem_time = time_limit - time_spent
+            cost_per_cookie = unique_times[curr_idx]
+            cookies += rem_time // cost_per_cookie
+            
+        return cookies
+
+    def dfs(u, current_dist):
+        """Explora el árbol aplicando la teoría del juego Mitya vs Vasya"""
+        comp_idx = time_to_idx[t[u]]
+        add(comp_idx, x[u], x[u] * t[u])
+        
+        time_left = T - 2 * current_dist
+        eat_u = get_max_cookies(time_left)
+        
+        child_f = []
+        for v, length in children[u]:
+            if 2 * (current_dist + length) <= T:
+                child_f.append(dfs(v, current_dist + length))
+                
+        # Lógica del juego
+        if u == 1:
+            # En la raíz, Vasya no puede bloquear. Mitya escoge lo mejor.
+            f_u = max(eat_u, max(child_f)) if child_f else eat_u
+        else:
+            # En otros nodos, Vasya bloquea la mejor opción. Mitya se conforma con la segunda mejor.
+            if not child_f:
+                f_u = eat_u
+            elif len(child_f) == 1:
+                f_u = eat_u
+            else:
+                child_f.sort(reverse=True)
+                f_u = max

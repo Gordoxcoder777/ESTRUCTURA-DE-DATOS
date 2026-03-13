@@ -1,0 +1,53 @@
+import sys
+
+def solve_poisoned_dagger():
+    # Leer toda la entrada de golpe garantiza la máxima velocidad de I/O
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    out = []
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        h = int(input_data[idx+1])
+        idx += 2
+        
+        # Extraemos el arreglo de los tiempos de ataque
+        a = [int(x) for x in input_data[idx : idx+n]]
+        idx += n
+        
+        # Búsqueda Binaria sobre la duración del veneno (k)
+        low = 1
+        high = int(1e18)  # Límite superior máximo (si n=1, k debe ser igual a h)
+        ans = high
+        
+        while low <= high:
+            mid = (low + high) // 2
+            
+            # Calculamos el daño total asumiendo que el veneno dura 'mid' segundos
+            total_damage = 0
+            for i in range(n - 1):
+                # El daño suma 'mid', a menos que el siguiente ataque reinicie el veneno antes
+                total_damage += min(mid, a[i+1] - a[i])
+                
+            # El último ataque siempre aplica su daño completo (mid)
+            total_damage += mid
+            
+            # Verificamos si este daño es suficiente para matar al dragón
+            if total_damage >= h:
+                ans = mid         # Guardamos la respuesta válida
+                high = mid - 1    # Intentamos buscar una duración de veneno aún menor
+            else:
+                low = mid + 1     # Faltó daño, necesitamos que el veneno dure más
+                
+        out.append(str(ans))
+        
+    # Imprimimos todas las respuestas de un solo golpe (mucho más rápido que hacer print en cada ciclo)
+    print('\n'.join(out))
+
+if __name__ == '__main__':
+    solve_poisoned_dagger()

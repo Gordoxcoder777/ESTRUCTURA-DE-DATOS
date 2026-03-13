@@ -1,0 +1,48 @@
+import sys
+
+def solve_poisoned_dagger():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    out = []
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        h = int(input_data[idx+1])
+        idx += 2
+        
+        a = [int(x) for x in input_data[idx : idx+n]]
+        idx += n
+        
+        low = 1
+        high = int(1e18)  # Límite superior máximo posible (si n=1, k debe ser igual a h)
+        ans = high
+        
+        while low <= high:
+            mid = (low + high) // 2
+            
+            total_damage = 0
+            for i in range(n - 1):
+                # El daño es k, a menos que el siguiente ataque lo corte antes
+                total_damage += min(mid, a[i+1] - a[i])
+                
+            total_damage += mid
+
+
+            if total_damage >= h:
+                ans = mid         
+                high = mid - 1    
+            else:
+                low = mid + 1     
+                
+        out.append(str(ans))
+        
+
+    print('\n'.join(out))
+
+if __name__ == '__main__':
+    solve_poisoned_dagger()

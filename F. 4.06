@@ -1,0 +1,26 @@
+import sys
+
+def solve_helpful_maths():
+    # sys.stdin.read().split() lee toda la entrada y elimina saltos de línea molestos
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+    
+    # Extraemos la cadena completa (ejemplo: "3+2+1")
+    s = input_data[0]
+    
+    # Separamos la cadena usando el '+' como delimitador
+    # Esto nos deja una lista limpia de caracteres: ['3', '2', '1']
+    numeros = s.split('+')
+    
+    # Ordenamos la lista. (En Python, ordenar caracteres numéricos funciona perfecto)
+    numeros.sort()
+    
+    # Volvemos a unir la lista ordenada intercalando un '+' entre cada elemento
+    resultado = "+".join(numeros)
+    
+    # Imprimimos el resultado final
+    print(resultado)
+
+if __name__ == '__main__':
+    solve_helpful_maths()

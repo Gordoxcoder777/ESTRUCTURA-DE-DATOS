@@ -1,0 +1,30 @@
+import sys
+
+def solve_romaji():
+    # sys.stdin.read().split() es a prueba de balas contra saltos de línea ocultos
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+    
+    # La palabra a evaluar
+    s = input_data[0]
+    
+    # Usar un set para las vocales hace que la búsqueda sea O(1)
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    
+    for i in range(len(s)):
+        char = s[i]
+        
+        # Verificamos si la letra actual es una consonante distinta de 'n'
+        if char not in vowels and char != 'n':
+            # Si es la última letra de la palabra, no tiene vocal después -> Falso
+            # Si la letra que le sigue no es una vocal -> Falso
+            if i == len(s) - 1 or s[i+1] not in vowels:
+                print("NO")
+                return
+                
+    # Si logramos revisar toda la palabra sin romper la regla, es válida
+    print("YES")
+
+if __name__ == '__main__':
+    solve_romaji()

@@ -1,0 +1,24 @@
+import sys
+
+def solve_teams_forming():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    n = int(input_data[0])
+    
+
+    a = sorted([int(x) for x in input_data[1:n+1]])
+    
+    total_problems = 0
+
+    for i in range(0, n, 2):
+
+        diferencia = a[i+1] - a[i]
+        total_problems += diferencia
+        
+
+    print(total_problems)
+
+if __name__ == '__main__':
+    solve_teams_forming()
